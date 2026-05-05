@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= job.title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background:#f5f7fb;">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm px-4">
+  <a class="navbar-brand fw-bold text-primary" href="/">FastRole</a>
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ms-4">
+      <li class="nav-item"><a class="nav-link text-dark" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/jobs">Jobs</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+
+  <!-- HEADER -->
+  <div class="bg-white p-4 rounded shadow-sm mb-4">
+    <h2 class="fw-bold"><%= job.title %></h2>
+
+    <div class="d-flex align-items-center mt-3">
+      <% if (job.companyLogo) { %>
+        <img src="<%= job.companyLogo %>" style="width:50px;height:50px;margin-right:15px;">
+      <% } %>
+
+      <div>
+        <h5 class="mb-1"><%= job.company %></h5>
+
+        <small class="text-muted">
+          <%= job.location?.city || 'N/A' %>,
+          <%= job.location?.country || 'N/A' %>,
+          <%= job.location?.type || 'N/A' %>
+        </small><br>
+
+        <small class="text-muted">
+          ₹<%= job.salary?.min || 0 %> - ₹<%= job.salary?.max || 0 %> <%= job.salary?.currency || '' %>
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <!-- LEFT SIDE -->
+    <div class="col-md-8">
+
+      <div class="bg-white p-4 rounded shadow-sm mb-3">
+
+        <!-- DESCRIPTION -->
+        <h5 class="fw-bold">Job Description</h5>
+        <p><%= job.description || "No description provided" %></p>
+
+        <hr>
+
+        <!-- RESPONSIBILITIES -->
+        <h5 class="fw-bold">Responsibilities</h5>
+        <ul>
+          <% if (job.responsibilities && job.responsibilities.length) { %>
+            <% job.responsibilities.forEach(r => { %>
+              <li><%= r %></li>
+            <% }) %>
+          <% } else { %>
+            <li>No responsibilities provided</li>
+          <% } %>
+        </ul>
+
+        <hr>
+
+        <!-- REQUIREMENTS -->
+        <h5 class="fw-bold">Requirements</h5>
+        <ul>
+          <% if (job.requirements && job.requirements.length) { %>
+            <% job.requirements.forEach(r => { %>
+              <li><%= r %></li>
+            <% }) %>
+          <% } else { %>
+            <li>No requirements provided</li>
+          <% } %>
+        </ul>
+
+        <hr>
+
+        <!-- BENEFITS -->
+        <h5 class="fw-bold">Benefits</h5>
+        <div class="d-flex flex-wrap gap-2">
+          <% if (job.benefits && job.benefits.length) { %>
+            <% job.benefits.forEach(b => { %>
+              <span class="badge bg-light text-dark p-2"><%= b %></span>
+            <% }) %>
+          <% } else { %>
+            <span class="text-muted">No benefits listed</span>
+          <% } %>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="col-md-4">
+
+      <!-- JOB OVERVIEW -->
+      <div class="bg-white rounded shadow-sm mb-3">
+        <div class="p-3 text-white"
+             style="background:linear-gradient(90deg,#4f46e5,#7c3aed); border-radius:8px 8px 0 0;">
+          <h5>● Job Overview</h5>
+        </div>
+
+        <div class="p-3">
+          <p><strong>Deadline:</strong><br><%= job.deadline || "Not specified" %></p>
+          <p><strong>Openings:</strong><br><%= job.openings || 0 %></p>
+          <p><strong>Applicants:</strong><br><%= job.applicants || 0 %></p>
+
+          <h6 class="fw-bold mt-3">Skills</h6>
+          <% if (job.skills && job.skills.length) { %>
+            <% job.skills.forEach(skill => { %>
+              <span class="badge bg-light text-dark m-1"><%= skill %></span>
+            <% }) %>
+          <% } else { %>
+            <span class="text-muted">No skills listed</span>
+          <% } %>
+
+          <button onclick="openModal()" 
+            class="btn w-100 text-white mt-3"
+            style="background:linear-gradient(90deg,#4f46e5,#7c3aed);">
+            Apply Now →
+          </button>
+        </div>
+      </div>
+
+      <!-- COMPANY -->
+      <div class="bg-white p-4 rounded shadow-sm text-center">
+        <% if (job.companyLogo) { %>
+          <img src="<%= job.companyLogo %>" style="width:60px;">
+        <% } %>
+        <h5 class="mt-2"><%= job.company %></h5>
+        <p class="text-muted"><%= job.location?.city || '' %></p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- APPLY MODAL -->
+<div id="applyModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;">
+
+  <div style="width:400px; margin:80px auto; background:#fff; border-radius:10px; overflow:hidden;">
+
+    <div style="padding:12px; color:#fff; background:linear-gradient(90deg,#4f46e5,#7c3aed); display:flex; justify-content:space-between;">
+      <span>Apply</span>
+      <button onclick="closeModal()" style="border:none; background:none; color:#fff;">X</button>
+    </div>
+
+    <form method="POST" action="/jobs/<%= job.id %>/apply" class="p-3">
+      <input name="name" class="form-control mb-2" placeholder="Name" required>
+      <input name="email" class="form-control mb-2" placeholder="Email" required>
+      <input name="phone" class="form-control mb-3" placeholder="Phone" required>
+
+      <button class="btn btn-success w-100">Submit</button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById("applyModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("applyModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

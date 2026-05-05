@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/layout.css">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <title>Job Portal</title>
+  </head>
+  <body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light px-3">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="/assets/job.png"
+            class="me-2"
+            style="max-height: 80px; border-radius: 100px"
+            alt="Logo"
+          />
+          <span class="fw-semibold fs-5 text-dark">FastRole</span>
+        </a>
+
+        <!-- Toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navBar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navBar">
+          <!-- Links -->
+          <ul class="navbar-nav me-auto ms-3 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <ul class="navbar-nav me-auto ms-3">
+
+  <li class="nav-item">
+    <a class="nav-link" href="/jobs">Jobs</a>
+  </li>
+
+  <% if (user) { %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+      Recruiter
+    </a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Post Job</a></li>
+      <li><a class="dropdown-item" href="#">Dashboard</a></li>
+      <li><a class="dropdown-item" href="/logout">Logout</a></li>
+    </ul>
+  </li>
+  <% } %>
+
+</ul>
+
+<% if (user) { %>
+  <a href="/jobs/post-job" class="btn btn-warning me-2 fw-semibold">
+    + Post Job
+  </a>
+<% } %>   
+
+<form class="d-flex">
+  <input class="form-control me-2" type="search">
+  <button class="btn btn-primary">Search</button>
+</form>
+
+<% if (user) { %>
+  <a href="/jobs" class="btn btn-success ms-2">Jobs</a>
+  <a href="/logout" class="btn btn-danger ms-2">Logout</a>
+<% } else { %>
+  <a href="/auth" class="btn btn-primary ms-2">Login</a>
+<% } %>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container-fluid p-0">
+      <div class="position-relative" style="margin-top: 4px">
+        <!-- Background Image -->
+        <img
+          src="/assets/bg2.jpg"
+          alt="Hero Image"
+          class="w-100"
+          style="height: 600px; object-fit: cover"
+        />
+
+        <!-- Overlay -->
+        <div
+          class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+          style="background: rgba(0, 0, 0, 0.5)"
+        >
+          <div class="container">
+            <div class="row align-items-center">
+              <!-- Left: Text -->
+              <div class="col-md-6 text-white">
+                <h1 class="display-4 fw-bold typing-text">
+                  Find Your Dream Job Now
+                </h1>
+
+                <p class="lead mb-4">
+                  Explore thousands of job opportunities with FastRole.
+                </p>
+
+                <a href="/jobs" class="btn btn-primary btn-lg me-2">Job Seeker</a>
+                <a href="#" class="btn btn-outline-light btn-lg">Recruiter</a>
+              </div>
+
+              <!-- Right: Image -->
+              <div class="col-md-6 text-center">
+                <img
+                  src="/assets/right-side.png"
+                  class="img-fluid"
+                  style="max-height: 500px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- top companies -->
+    <div class="container py-5">
+      <!-- Title -->
+      <h4 class="text-center fw-bold mb-5">Top companies hiring now</h4>
+
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div
+            class="p-4 bg-white"
+            style="border: 1px solid #eee; border-radius: 12px"
+          >
+            <h6 class="fw-bold">MNCs &rsaquo;</h6>
+            <p style="font-size: 14px; color: #777">
+              1.27K are actively hiring
+            </p>
+
+            <div class="d-flex gap-2">
+              <img
+                src="https://img.icons8.com/color/48/google-logo.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://img.icons8.com/color/48/microsoft.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://img.icons8.com/color/48/amazon.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div
+            class="p-4 bg-white"
+            style="border: 1px solid #eee; border-radius: 12px"
+          >
+            <h6 class="fw-bold">Startups &rsaquo;</h6>
+            <p style="font-size: 14px; color: #777">140 are actively hiring</p>
+
+            <div class="d-flex gap-2">
+              <img
+                src="https://img.icons8.com/color/48/stripe.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://img.icons8.com/ios-filled/50/000000/uber.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://img.icons8.com/color/48/airbnb.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div
+            class="p-4 bg-white"
+            style="border: 1px solid #eee; border-radius: 12px"
+          >
+            <h6 class="fw-bold">IT Services &rsaquo;</h6>
+            <p style="font-size: 14px; color: #777">573 are actively hiring</p>
+
+            <div class="d-flex gap-2">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTRWhy-DtDvugixEsFCCYQLfukn5hcwxRjbg&s"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://dl.svgcdn.com/png/simple-icons/cognizant-800.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/1272/cached.offlinehbpl.hbpl.co.uk/news/SUC/20220927102358_hcltech-copy-CUS.jpg"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div
+            class="p-4 bg-white"
+            style="border: 1px solid #eee; border-radius: 12px"
+          >
+            <h6 class="fw-bold">Product &rsaquo;</h6>
+            <p style="font-size: 14px; color: #777">
+              2.1K+ are actively hiring
+            </p>
+
+            <div class="d-flex gap-2">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/075/195/381/non_2x/practo-logo-rounded-square-glossy-icon-with-transparent-background-free-png.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://img.icons8.com/color/48/salesforce.png"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+              <img
+                src="https://yt3.googleusercontent.com/hKhZC-qfqS8IE-lu5AxwDHqQt-mK6XyV-AWLom89Oycio7KouoOVm2yPiLdD7wVWNgxl4KS69g=s900-c-k-c0x00ffffff-no-rj"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  object-fit: contain;
+                  border: 1px solid #eee;
+                  border-radius: 8px;
+                  padding: 5px;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Expore all jobs -->
+        <div class="container text-center" style="padding: 60px 0">
+          <h3 class="fw-bold mb-5">Explore Job Categories</h3>
+
+          <!-- Categories Row -->
+          <div class="row justify-content-center g-3">
+            <!-- Remote -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 160px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-house-chimney"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Remote</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Startup -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 160px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-rocket"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Startup</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Fresher -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 160px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-graduation-cap"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Fresher</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Internship -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 180px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-file-signature"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Internship</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Sales -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 150px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-briefcase"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Sales</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Engineering -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 180px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-gear"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Engineering</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Software IT -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 180px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-desktop"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Software IT</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- MNC -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 150px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-building"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >MNC</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Marketing -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 170px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-chart-line"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Marketing</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Analytics -->
+            <div class="col-auto">
+              <button
+                class="btn d-flex align-items-center shadow-sm"
+                style="
+                  background: #fff;
+                  border-radius: 15px;
+                  min-width: 170px;
+                  padding: 10px 20px;
+                  border: 1px solid #f0f0f0;
+                "
+              >
+                <i
+                  class="fa-solid fa-magnifying-glass"
+                  style="color: #6c757d; font-size: 18px; margin-right: 12px"
+                ></i>
+                <span
+                  style="
+                    color: #333;
+                    font-weight: 600;
+                    flex-grow: 1;
+                    text-align: left;
+                  "
+                  >Analytics</span
+                >
+                <i
+                  class="fa-solid fa-chevron-right"
+                  style="font-size: 12px; color: #adb5bd; margin-left: 10px"
+                ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interested -->
+        <div class="container text-center" style="padding: 60px 0">
+          <!-- Heading -->
+          <h3 class="fw-bold mb-5">Jobs you may be interested in</h3>
+
+          <div class="row justify-content-center">
+            <!-- CARD 1 -->
+            <div class="col-md-3">
+              <button
+                class="w-100 text-start"
+                style="
+                  border: none;
+                  background: #fff;
+                  border-radius: 16px;
+                  padding: 10px;
+                  margin: 10px;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                "
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <img
+                    src="https://media.licdn.com/dms/image/v2/C4E0BAQE-c93cqdbEQQ/company-logo_200_200/company-logo_200_200/0/1630597221395/shakti_solutions_logo?e=2147483647&v=beta&t=td0v0_dkwfj01H77qoIz1HZgkQgvQKIty1DgTpfu9s4"
+                    style="border-radius: 8px; width: 50px"
+                  />
+                  <small style="color: #6c757d">1d ago</small>
+                </div>
+
+                <h5 class="fw-bold">Fresher SQL Developer</h5>
+
+                <p style="margin: 5px 0; color: #6c757d">
+                  Shakti Infosolutions
+                  <span style="color: #f4b400"
+                    ><i class="fa fa-star"></i> 4.2</span
+                  >
+                </p>
+
+                <div class="d-flex gap-3 mt-3" style="color: #6c757d">
+                  <span><i class="fa fa-location-dot"></i> Chennai</span>
+                  <span><i class="fa fa-briefcase"></i> 0-3 Yrs</span>
+                </div>
+              </button>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-md-3">
+              <button
+                class="w-100 text-start"
+                style="
+                  border: none;
+                  background: #fff;
+                  border-radius: 16px;
+                  padding: 10px;
+                  margin: 10px;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                "
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/59/ZS_Associates.svg"
+                    style="width: 50px"
+                  />
+                  <small style="color: #6c757d">2d ago</small>
+                </div>
+
+                <h5 class="fw-bold">Cloud Data Engineer</h5>
+
+                <p style="margin: 5px 0; color: #6c757d">
+                  ZS Associates
+                  <span style="color: #f4b400"
+                    ><i class="fa fa-star"></i> 3.3</span
+                  >
+                </p>
+
+                <div class="d-flex gap-3 mt-3" style="color: #6c757d">
+                  <span><i class="fa fa-location-dot"></i> Pune</span>
+                  <span><i class="fa fa-briefcase"></i> 0-3 Yrs</span>
+                </div>
+              </button>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-md-3">
+              <button
+                class="w-100 text-start"
+                style="
+                  border: none;
+                  background: #fff;
+                  border-radius: 16px;
+                  padding: 20px;
+                  margin: 10px;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                "
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTRWhy-DtDvugixEsFCCYQLfukn5hcwxRjbg&s"
+                    style="width: 50px"
+                  />
+                  <small style="color: #6c757d">6d ago</small>
+                </div>
+
+                <h5 class="fw-bold">Data Engineer</h5>
+
+                <p style="margin: 5px 0; color: #6c757d">
+                  Accenture
+                  <span style="color: #f4b400"
+                    ><i class="fa fa-star"></i> 3.8</span
+                  >
+                </p>
+
+                <div class="d-flex gap-3 mt-3" style="color: #6c757d">
+                  <span><i class="fa fa-location-dot"></i> Ahmedabad</span>
+                  <span><i class="fa fa-briefcase"></i> 0-2 Yrs</span>
+                </div>
+              </button>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="col-md-3">
+              <button
+                class="w-100 text-start"
+                style="
+                  border: none;
+                  background: #fff;
+                  border-radius: 16px;
+                  padding: 10px;
+                  margin: 10px;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                "
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <img
+                    src="https://media.licdn.com/dms/image/v2/D4E0BAQEbOxvG-CRSQg/company-logo_200_200/company-logo_200_200/0/1698900640283/revalsys_technologies_logo?e=2147483647&v=beta&t=a0-TAIwUFwX2mZcPDHMANxxv6_aGaSZq-n82g9ykH2k"
+                    style="width: 50px"
+                  />
+                  <small style="color: #6c757d">5d ago</small>
+                </div>
+
+                <h5 class="fw-bold">SQL Developer</h5>
+
+                <p style="margin: 5px 0; color: #6c757d">
+                  Revalsys Technologies
+                  <span style="color: #f4b400"
+                    ><i class="fa fa-star"></i> 3.7</span
+                  >
+                </p>
+
+                <div class="d-flex gap-3 mt-3" style="color: #6c757d">
+                  <span><i class="fa fa-location-dot"></i> Hyderabad</span>
+                  <span><i class="fa fa-briefcase"></i> 0-1 Yrs</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- how easily works -->
+    <div
+      class="container text-center"
+      style="padding: 20px 20px; margin-top: -40px"
+    >
+      <!-- Heading -->
+      <h2 style="font-weight: 700; color: #2c3e50">How Easily Works</h2>
+      <p style="color: #6c757d; font-size: 18px">
+        Your journey to the perfect job in three simple steps
+      </p>
+
+      <!-- Content Row -->
+      <div class="row align-items-center mt-5">
+        <!-- Left Side -->
+        <div class="col-md-6 text-center">
+          <!-- Circle -->
+          <div
+            style="
+              width: 120px;
+              height: 120px;
+              background-color: #1e66e1;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto;
+              color: white;
+              font-size: 30px;
+              font-weight: bold;
+            "
+          >
+            1
+          </div>
+
+          <!-- Title -->
+          <h3 style="margin-top: 20px; font-weight: 600; color: #2c3e50">
+            Create Profile
+          </h3>
+
+          <!-- Description -->
+          <p style="color: #6c757d; font-size: 16px">
+            Build a professional profile that stands out to employers.
+          </p>
+        </div>
+
+        <!-- Right Side Image -->
+        <div class="col-md-6 text-center">
+          <img
+            src="https://th-i.thgim.com/public/incoming/y959ut/article65406318.ece/alternates/FREE_1200/16epbs_mentorship.jpg"
+            alt="illustration"
+            style="max-width: 300px; width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="container text-center" style="padding: 40px 20px">
+      <div class="row align-items-center">
+        <!-- Left Image -->
+        <div class="col-md-6 text-center">
+          <img
+            src="https://i.pinimg.com/736x/b0/2e/2c/b02e2c0b47491b6aeae24303c6975727.jpg"
+            alt="vacancy"
+            style="max-width: 300px; width: 100%"
+          />
+        </div>
+
+        <!-- Right Content -->
+        <div class="col-md-6 text-center">
+          <!-- Circle -->
+          <div
+            style="
+              width: 110px;
+              height: 110px;
+              background-color: #1f8a5b;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto;
+              color: white;
+              font-size: 28px;
+              font-weight: bold;
+            "
+          >
+            2
+          </div>
+
+          <!-- Title -->
+          <h3 style="margin-top: 20px; font-weight: 600; color: #2c3e50">
+            Find Jobs
+          </h3>
+
+          <!-- Description -->
+          <p style="color: #6c757d; font-size: 16px">
+            Browse thousands of job opportunities tailored to your skills.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container text-center" style="padding: 40px 20px">
+      <div class="row align-items-center">
+        <!-- Left Content -->
+        <div class="col-md-6 text-center">
+          <!-- Circle -->
+          <div
+            style="
+              width: 110px;
+              height: 110px;
+              background-color: #f4b400;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto;
+              color: white;
+              font-size: 28px;
+              font-weight: bold;
+            "
+          >
+            3
+          </div>
+
+          <!-- Title -->
+          <h3 style="margin-top: 20px; font-weight: 600; color: #2c3e50">
+            Apply & Grow
+          </h3>
+
+          <!-- Description -->
+          <p style="color: #6c757d; font-size: 16px">
+            Apply with confidence and advance your career.
+          </p>
+        </div>
+
+        <!-- Right Image -->
+        <div class="col-md-6 text-center">
+          <img
+            src="https://img.freepik.com/premium-vector/job-offers-concept-illustration_114360-4369.jpg?w=360"
+            alt="apply job"
+            style="max-width: 320px; width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Success stories -->
+    <div
+      class="container-fluid text-center"
+      style="
+        padding: 60px 20px;
+        background: linear-gradient(90deg, #f5e6dc, #dce6f5);
+        border-radius: 20px;
+      "
+    >
+      <!-- Heading -->
+      <h2 style="font-weight: 700; color: #2c3e50">Success Stories</h2>
+      <p style="color: #6c757d; font-size: 18px">
+        Real people, real careers, real success
+      </p>
+
+      <!-- Carousel -->
+      <div
+        id="testimonialCarousel"
+        class="carousel slide mt-5"
+        data-bs-ride="carousel"
+        data-bs-interval="2500"
+      >
+        <div class="carousel-inner">
+          <!-- Card 1 -->
+          <div class="carousel-item active">
+            <div
+              class="card mx-auto"
+              style="
+                max-width: 700px;
+                border-radius: 15px;
+                padding: 20px;
+                border: none;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://i.pinimg.com/1200x/2c/78/b5/2c78b584340e6d3db4de341708914ab1.jpg"
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                  "
+                />
+
+                <div style="text-align: left">
+                  <strong>Michael Chen</strong><br />
+                  <span style="color: #6c757d">@stripe</span>
+                </div>
+
+                <div style="margin-left: auto; font-weight: bold">
+                  <span>
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2FtrKIXanmd1lnI1HRoZpZojwfI_iKh1rvw&s"
+                      alt="Stripe"
+                      style="width: 60px; height: auto"
+                    />
+                  </span>
+                </div>
+              </div>
+
+              <p style="text-align: left; color: #444">
+                As a recruiter, FastRole has been my go-to platform for finding
+                top talent quickly and efficiently.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="carousel-item">
+            <div
+              class="card mx-auto"
+              style="
+                max-width: 700px;
+                border-radius: 15px;
+                padding: 20px;
+                border: none;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://i.pinimg.com/1200x/90/3d/60/903d608fe634e23666770f26060e8d48.jpg"
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                  "
+                />
+
+                <div style="text-align: left">
+                  <strong>Hikmet Atçeken</strong><br />
+                  <span style="color: #6c757d">@Uber</span>
+                </div>
+
+                <div style="margin-left: auto; font-weight: bold">
+                  <span>
+                    <img
+                      src="https://img.utdstc.com/icon/95e/674/95e674e35c459c890dd8c5338b679a40a82bf19fe1911bf74e72cb5bdbdd7ebc:200"
+                      alt="Uber"
+                      style="width: 60px; height: auto"
+                    />
+                  </span>
+                </div>
+              </div>
+
+              <p style="text-align: left; color: #444">
+                Pulsefy's our daily tool to bypass averages and reveal true
+                insights, for the whole team!
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="carousel-item">
+            <div
+              class="card mx-auto"
+              style="
+                max-width: 700px;
+                border-radius: 15px;
+                padding: 20px;
+                border: none;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://i.pinimg.com/736x/7e/bc/1d/7ebc1dbc1119226a49ffd7e1aa93d0d6.jpg"
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                  "
+                />
+
+                <div style="text-align: left">
+                  <strong>Kals Roy</strong><br />
+                  <span style="color: #6c757d">@Microsoft</span>
+                </div>
+
+                <div style="margin-left: auto; font-weight: bold">
+                  <span>
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                      alt="Microsoft"
+                      style="width: 60px; height: auto"
+                    />
+                  </span>
+                </div>
+              </div>
+
+              <p style="text-align: left; color: #444">
+                FastRole helped me land my dream job faster than I expected.
+                Highly recommended platform!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div
+      class="container-fluid"
+      style="background: #f8f9fa; padding: 50px 30px"
+    >
+      <div class="row">
+        <!-- About -->
+        <div class="col-md-3">
+          <h5 style="font-weight: 600">About FastRole</h5>
+          <p style="color: #6c757d">
+            Your go-to platform for finding dream jobs. We connect talented
+            professionals with top companies worldwide.
+          </p>
+
+          <!-- Social Icons -->
+          <div style="display: flex; gap: 15px; font-size: 20px">
+            <i
+              class="fa fa-linkedin"
+              style="color: #6c757d; cursor: pointer"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.transform = 'translateY(-3px)';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.transform = 'translateY(0)';
+              "
+            ></i>
+
+            <i
+              class="fa fa-twitter"
+              style="color: #6c757d; cursor: pointer"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.transform = 'translateY(-3px)';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.transform = 'translateY(0)';
+              "
+            ></i>
+
+            <i
+              class="fa fa-facebook"
+              style="color: #6c757d; cursor: pointer"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.transform = 'translateY(-3px)';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.transform = 'translateY(0)';
+              "
+            ></i>
+
+            <i
+              class="fa fa-instagram"
+              style="color: #6c757d; cursor: pointer"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.transform = 'translateY(-3px)';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.transform = 'translateY(0)';
+              "
+            ></i>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-3">
+          <h5 style="font-weight: 600">Quick Links</h5>
+
+          <p>
+            <a
+              href="#"
+              style="text-decoration: none; color: #6c757d"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.textDecoration = 'underline';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.textDecoration = 'none';
+              "
+            >
+              Find Jobs
+            </a>
+          </p>
+
+          <p>
+            <a
+              href="#"
+              style="text-decoration: none; color: #6c757d"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.textDecoration = 'underline';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.textDecoration = 'none';
+              "
+            >
+              Post a Job
+            </a>
+          </p>
+
+          <p>
+            <a
+              href="#"
+              style="text-decoration: none; color: #6c757d"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.textDecoration = 'underline';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.textDecoration = 'none';
+              "
+            >
+              About Us
+            </a>
+          </p>
+
+          <p>
+            <a
+              href="#"
+              style="text-decoration: none; color: #6c757d"
+              onmouseover="
+                this.style.color = '#ff5a3c';
+                this.style.textDecoration = 'underline';
+              "
+              onmouseout="
+                this.style.color = '#6c757d';
+                this.style.textDecoration = 'none';
+              "
+            >
+              Contact Us
+            </a>
+          </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-md-3">
+          <h5 style="font-weight: 600">Contact</h5>
+          <p style="color: #6c757d">
+            <i class="fa fa-map-marker"></i> 123 Job Street, Job City
+          </p>
+          <p style="color: #6c757d">
+            <i class="fa fa-phone"></i> (123) 456-7890
+          </p>
+          <p style="color: #6c757d">
+            <i class="fa fa-envelope"></i> info@FastRole.com
+          </p>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="col-md-3">
+          <h5 style="font-weight: 600">Newsletter</h5>
+          <p style="color: #6c757d">
+            Get the latest job updates and career tips.
+          </p>
+
+          <div style="display: flex; gap: 10px">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              style="
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+              "
+            />
+
+            <button
+              style="
+                background: #ff5a3c;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+              "
+              onmouseover="this.style.background = '#e14b2f'"
+              onmouseout="this.style.background = '#ff5a3c'"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center" style="padding: 20px; background: #e9ecef">
+      <small style="color: #6c757d"
+        >&copy; 2024 FastRole. All rights reserved.</small
+      >
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

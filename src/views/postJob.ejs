@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post Job</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background: linear-gradient(135deg, #eef2ff, #f8f9fa);">
+
+<div class="container py-5">
+
+  <h2 class="text-center fw-bold mb-4" style="font-size: 36px;">
+    🚀 Post a New Job
+  </h2>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="card shadow-lg border-0"
+           style="border-radius: 20px; padding: 25px;">
+
+        <form action="/jobs/post-job" method="POST" enctype="multipart/form-data">
+
+          <!-- BASIC INFO -->
+          <h5 class="fw-bold mb-3" style="color:#6c63ff;">Basic Information</h5>
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Job Title</label>
+              <input name="title" class="form-control" placeholder="Frontend Developer">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Company</label>
+              <input name="company" class="form-control" placeholder="Google">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Company Logo</label>
+              <input type="file" name="logo" class="form-control" accept="image/*">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">City</label>
+              <input name="city" class="form-control" placeholder="Mumbai">
+            </div>
+
+          </div>
+
+          <!-- JOB DETAILS -->
+          <h5 class="fw-bold mt-4 mb-3" style="color:#6c63ff;">Job Details</h5>
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Openings</label>
+              <input name="openings" class="form-control" placeholder="5">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Skills</label>
+              <input name="skills" class="form-control" placeholder="React, Node, MongoDB">
+            </div>
+
+          </div>
+
+          <!-- ✅ NEW SECTION -->
+          <h5 class="fw-bold mt-4 mb-3" style="color:#6c63ff;">Job Content</h5>
+
+          <!-- DESCRIPTION -->
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="3"
+              placeholder="Enter job description"></textarea>
+          </div>
+
+          <!-- RESPONSIBILITIES -->
+          <div class="mb-3">
+            <label class="form-label">Responsibilities</label>
+            <input name="responsibilities" class="form-control"
+              placeholder="Task1, Task2, Task3">
+          </div>
+
+          <!-- REQUIREMENTS -->
+          <div class="mb-3">
+            <label class="form-label">Requirements</label>
+            <input name="requirements" class="form-control"
+              placeholder="Skill1, Skill2, Skill3">
+          </div>
+
+          <!-- BENEFITS -->
+          <div class="mb-3">
+            <label class="form-label">Benefits</label>
+            <input name="benefits" class="form-control"
+              placeholder="WFH, Insurance, Bonus">
+          </div>
+
+          <!-- SALARY -->
+          <h5 class="fw-bold mt-4 mb-3" style="color:#6c63ff;">Salary</h5>
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Min Salary</label>
+              <input name="min" class="form-control" placeholder="6 LPA">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Max Salary</label>
+              <input name="max" class="form-control" placeholder="12 LPA">
+            </div>
+
+          </div>
+
+          <!-- BUTTON -->
+          <div class="mt-4">
+            <button class="btn w-100"
+              style="background: linear-gradient(135deg, #6c63ff, #5a54e6); color: white;">
+              ✨ Post Job
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
